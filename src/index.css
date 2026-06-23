@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 42 52% 88%;
+    --foreground: 92 22% 13%;
+    --card: 42 48% 91%;
+    --card-foreground: 92 22% 13%;
+    --popover: 42 48% 91%;
+    --popover-foreground: 92 22% 13%;
+    --primary: 92 26% 18%;
+    --primary-foreground: 42 52% 93%;
+    --secondary: 70 16% 55%;
+    --secondary-foreground: 92 26% 14%;
+    --muted: 41 34% 83%;
+    --muted-foreground: 90 12% 33%;
+    --accent: 36 46% 50%;
+    --accent-foreground: 42 52% 96%;
+    --destructive: 0 55% 42%;
+    --destructive-foreground: 42 52% 96%;
+    --border: 40 26% 76%;
+    --input: 40 26% 76%;
+    --ring: 36 46% 50%;
+    --chart-1: 36 46% 50%;
+    --chart-2: 92 26% 28%;
+    --chart-3: 70 16% 45%;
+    --chart-4: 43 74% 60%;
+    --chart-5: 25 60% 45%;
+    --radius: 0.375rem;
+    --font-heading: 'Cinzel', ui-serif, Georgia, serif;
+    --font-body: 'EB Garamond', ui-serif, Georgia, serif;
+    --font-display: 'Cinzel', ui-serif, Georgia, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --sidebar-background: 100 14% 95%;
+    --sidebar-foreground: 120 6% 10%;
+    --sidebar-primary: 120 6% 10%;
+    --sidebar-primary-foreground: 100 14% 97%;
+    --sidebar-accent: 90 6% 90%;
+    --sidebar-accent-foreground: 120 6% 10%;
+    --sidebar-border: 90 6% 85%;
+    --sidebar-ring: 90 8% 40%;
+  }
+
+  .dark {
+    --background: 120 6% 7%;
+    --foreground: 100 14% 95%;
+    --card: 120 6% 10%;
+    --card-foreground: 100 14% 95%;
+    --popover: 120 6% 10%;
+    --popover-foreground: 100 14% 95%;
+    --primary: 100 14% 95%;
+    --primary-foreground: 120 6% 7%;
+    --secondary: 90 8% 40%;
+    --secondary-foreground: 100 14% 95%;
+    --muted: 120 4% 16%;
+    --muted-foreground: 90 6% 60%;
+    --accent: 36 46% 50%;
+    --accent-foreground: 42 52% 96%;
+    --destructive: 359 49% 45%;
+    --destructive-foreground: 100 14% 97%;
+    --border: 120 4% 18%;
+    --input: 120 4% 18%;
+    --ring: 90 8% 40%;
+    --chart-1: 359 49% 51%;
+    --chart-2: 90 8% 50%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 120 6% 7%;
+    --sidebar-foreground: 100 14% 95%;
+    --sidebar-primary: 100 14% 95%;
+    --sidebar-primary-foreground: 120 6% 7%;
+    --sidebar-accent: 120 4% 16%;
+    --sidebar-accent-foreground: 100 14% 95%;
+    --sidebar-border: 120 4% 18%;
+    --sidebar-ring: 90 8% 40%;
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+}
+
+/* Hide scrollbar for horizontal trail strip */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smooth scroll for the whole page */
+html {
+  scroll-behavior: smooth;
+}
