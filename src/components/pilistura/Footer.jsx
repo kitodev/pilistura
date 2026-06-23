@@ -45,10 +45,10 @@ export default function Footer() {
 
   return (
     <footer className="bg-foreground text-background">
-      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-12 sm:py-16 md:py-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand */}
-          <div className="lg:col-span-2">
+          <div className="sm:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
               <img src={LOGO_URL} alt="Hunyadi Vándorfogadó" className="h-20 w-auto object-contain rounded" />
             </div>
@@ -108,7 +108,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-background/10">
-        <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-24 py-6 flex flex-col md:flex-row items-center md:justify-between gap-3 text-center md:text-left">
           <p className="text-xs text-background/30">
             © {new Date().getFullYear()} PilisTúra. Minden jog fenntartva.
           </p>

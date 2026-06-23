@@ -22,21 +22,21 @@ const RANK_ICON = {
 
 export default function ResultsSection() {
   return (
-    <section id="results" className="relative py-24 md:py-36 bg-muted overflow-hidden">
+    <section id="results" className="relative py-16 sm:py-20 md:py-36 bg-muted overflow-hidden">
       <TopoLines className="text-foreground" opacity={0.03} />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-16">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 md:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <p className="text-accent text-sm font-semibold tracking-[0.3em] uppercase mb-4">
+          <p className="text-accent text-xs sm:text-sm font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4">
             Eredmények
           </p>
-          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground tracking-tight uppercase leading-none">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground uppercase leading-none">
             A gerinc
             <br />
             hódítói
@@ -67,25 +67,25 @@ export default function ResultsSection() {
             return (
               <div
                 key={r.rank}
-                className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-border last:border-b-0 items-center hover:bg-muted/40 transition-colors"
+                className="grid grid-cols-[auto_1fr] md:grid-cols-12 gap-x-4 gap-y-2 px-4 sm:px-6 py-4 border-b border-border last:border-b-0 items-center hover:bg-muted/40 transition-colors"
               >
-                <div className="col-span-2 md:col-span-1 flex items-center">
+                <div className="row-span-2 md:row-span-1 md:col-span-1 flex items-center">
                   {badge ? (
                     <badge.Icon className={`w-5 h-5 ${badge.color}`} />
                   ) : (
                     <span className="font-mono text-sm text-muted-foreground">{r.rank}</span>
                   )}
                 </div>
-                <div className="col-span-10 md:col-span-4 font-heading font-semibold text-foreground">
+                <div className="min-w-0 md:col-span-4 font-heading font-semibold text-foreground">
                   {r.name}
                 </div>
-                <div className="col-span-7 md:col-span-4 text-sm text-muted-foreground">
+                <div className="min-w-0 md:col-span-4 text-sm text-muted-foreground">
                   {r.trail}
                 </div>
-                <div className="col-span-3 md:col-span-2 font-mono text-sm text-foreground">
+                <div className="col-start-2 md:col-start-auto md:col-span-2 font-mono text-sm text-foreground">
                   {r.time}
                 </div>
-                <div className="col-span-2 md:col-span-1 text-right font-bold text-accent">
+                <div className="col-start-2 md:col-start-auto md:col-span-1 md:text-right font-bold text-accent">
                   {r.points}
                 </div>
               </div>

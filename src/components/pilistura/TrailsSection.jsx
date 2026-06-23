@@ -10,7 +10,9 @@ export default function TrailsSection({ trails }) {
 
   const scroll = (direction) => {
     if (!scrollRef.current) return;
-    const amount = 380;
+    const firstCard = scrollRef.current.querySelector("[data-trail-card]");
+    const gap = 24;
+    const amount = firstCard ? firstCard.getBoundingClientRect().width + gap : scrollRef.current.clientWidth * 0.85;
     scrollRef.current.scrollBy({
       left: direction === "left" ? -amount : amount,
       behavior: "smooth",
@@ -18,10 +20,10 @@ export default function TrailsSection({ trails }) {
   };
 
   return (
-    <section id="trails" className="relative py-24 md:py-36 bg-background overflow-hidden">
+    <section id="trails" className="relative py-16 sm:py-20 md:py-36 bg-background overflow-hidden">
       <TopoLines className="text-foreground" opacity={0.04} />
 
-      <div className="relative z-10 px-6 md:px-16 lg:px-24 mb-12 md:mb-16">
+      <div className="relative z-10 px-4 sm:px-6 md:px-16 lg:px-24 mb-10 md:mb-16">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -29,30 +31,31 @@ export default function TrailsSection({ trails }) {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-accent text-sm font-semibold tracking-[0.3em] uppercase mb-4">
+            <p className="text-accent text-xs sm:text-sm font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4">
               Expedíciók
             </p>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
               <div>
-                <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight uppercase leading-none">
+                <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground uppercase leading-none">
                   Útvonalak
                 </h2>
-                <p className="mt-4 text-muted-foreground text-lg max-w-lg leading-relaxed">
+                <p className="mt-4 text-muted-foreground text-base sm:text-lg max-w-lg leading-relaxed">
                   Válassz a túra- és futóútvonalak közül — mindegyik a piliszentlászlói Hunyadi Vendégfogadótól indul és oda tér vissza.
                 </p>
               </div>
 
-              {/* Desktop scroll controls */}
-              <div className="hidden md:flex items-center gap-3">
+              <div className="flex items-center gap-3">
                 <button
                   onClick={() => scroll("left")}
-                  className="w-12 h-12 border border-border flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300"
+                  aria-label="Előző útvonal"
+                  className="w-11 h-11 sm:w-12 sm:h-12 border border-border flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={() => scroll("right")}
-                  className="w-12 h-12 border border-border flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300"
+                  aria-label="Következő útvonal"
+                  className="w-11 h-11 sm:w-12 sm:h-12 border border-border flex items-center justify-center hover:bg-foreground hover:text-background transition-all duration-300"
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
@@ -65,8 +68,8 @@ export default function TrailsSection({ trails }) {
       {/* Horizontal scrolling trail cards */}
       <div
         ref={scrollRef}
-        className="relative z-10 flex gap-6 overflow-x-auto px-6 md:px-16 lg:px-24 pb-6 scrollbar-hide"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        className="relative z-10 flex gap-4 sm:gap-6 overflow-x-auto px-4 sm:px-6 md:px-16 lg:px-24 pb-6 snap-x snap-mandatory scroll-smooth"
+        style={{ scrollbarWidth: "auto", msOverflowStyle: "auto", WebkitOverflowScrolling: "touch", touchAction: "pan-x" }}
       >
         {trails.map((trail, i) => (
           <TrailCard

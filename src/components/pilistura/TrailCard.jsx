@@ -20,19 +20,20 @@ const DIFFICULTY_LABELS = {
 export default function TrailCard({ trail, index, onHover, isActive }) {
   return (
     <motion.div
+      data-trail-card
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       onMouseEnter={() => onHover && onHover(trail.id)}
       onMouseLeave={() => onHover && onHover(null)}
-      className={`group relative flex-shrink-0 w-[320px] md:w-[360px] transition-all duration-500 ${
+      className={`group relative flex-shrink-0 w-[min(84vw,320px)] sm:w-[320px] md:w-[360px] snap-start transition-all duration-500 ${
         isActive === false ? "opacity-30 scale-[0.98]" : ""
       }`}
     >
       <div className="relative overflow-hidden bg-card border border-border">
         {/* Image */}
-        <div className="relative h-52 overflow-hidden">
+        <div className="relative h-48 sm:h-52 overflow-hidden">
           <img
             src={trail.image}
             alt={trail.name}
@@ -52,8 +53,8 @@ export default function TrailCard({ trail, index, onHover, isActive }) {
         </div>
 
         {/* Content */}
-        <div className="p-5">
-          <div className="flex items-center gap-2 mb-2">
+        <div className="p-4 sm:p-5">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-2">
             <span className={`text-xs font-bold tracking-wider uppercase ${DIFFICULTY_COLORS[trail.difficulty]}`}>
               {DIFFICULTY_LABELS[trail.difficulty]}
             </span>
@@ -65,16 +66,16 @@ export default function TrailCard({ trail, index, onHover, isActive }) {
             {trail.name}
           </h3>
 
-          <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
-            <span className="flex items-center gap-1">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground mb-4">
+            <span className="flex items-center gap-1 min-w-0">
               <TrendingUp className="w-3.5 h-3.5" />
               {trail.elevation}
             </span>
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1 min-w-0">
               <Clock className="w-3.5 h-3.5" />
               {trail.time}
             </span>
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1 min-w-0">
               <MapPin className="w-3.5 h-3.5" />
               Piliszentlászló
             </span>
@@ -101,7 +102,7 @@ export default function TrailCard({ trail, index, onHover, isActive }) {
               title="Megnyitás térképen"
             >
               <Navigation className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-              <span className="font-mono text-xs text-muted-foreground group-hover/gps:text-foreground transition-colors">
+              <span className="min-w-0 truncate font-mono text-[11px] sm:text-xs text-muted-foreground group-hover/gps:text-foreground transition-colors">
                 {trail.gps.label}
               </span>
               <span className="ml-auto text-[10px] uppercase tracking-wider text-accent font-semibold opacity-0 group-hover/gps:opacity-100 transition-opacity">
@@ -120,7 +121,7 @@ export default function TrailCard({ trail, index, onHover, isActive }) {
               href={trail.alltrails_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 bg-foreground text-background py-3 text-sm font-semibold tracking-wider uppercase hover:bg-accent hover:text-accent-foreground transition-all duration-300 group/alltrails"
+              className="mt-3 w-full flex items-center justify-center gap-2 bg-foreground text-background py-3 text-sm font-semibold tracking-wider uppercase hover:bg-accent hover:text-accent-foreground transition-all duration-300 group/alltrails"
             >
               AllTrails
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/alltrails:translate-x-1" />

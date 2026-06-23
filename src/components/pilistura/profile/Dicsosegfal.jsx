@@ -30,7 +30,7 @@ export default function Dicsosegfal() {
 
       {/* Parchment scroll */}
       <div
-        className="relative min-h-[500px] p-8 rounded-sm overflow-hidden"
+        className="relative min-h-[420px] sm:min-h-[500px] p-4 sm:p-8 rounded-sm overflow-hidden"
         style={{
           background: "radial-gradient(ellipse at 50% 30%, hsl(42, 55%, 80%) 0%, hsl(35, 45%, 64%) 70%, hsl(30, 40%, 55%) 100%)",
           boxShadow: "inset 0 0 80px rgba(0,0,0,0.2), inset 0 0 20px rgba(0,0,0,0.1), 0 4px 20px rgba(0,0,0,0.15)",
@@ -55,11 +55,11 @@ export default function Dicsosegfal() {
             </p>
           </div>
         ) : (
-          <div className="relative grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-6">
+          <div className="relative grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4 sm:gap-6">
             {completions.map((c, i) => (
               <div key={c.id || i} className="flex flex-col items-center gap-1.5">
                 <div
-                  className="w-16 h-16 rounded-full overflow-hidden border-2 shadow-lg"
+                  className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 shadow-lg"
                   style={{ borderColor: "hsl(35 35% 42%)", boxShadow: "0 2px 8px rgba(0,0,0,0.25)" }}
                 >
                   <img src={LOGO_URL} alt={c.user_name} className="w-full h-full object-cover" />

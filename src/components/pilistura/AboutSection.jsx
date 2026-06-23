@@ -4,11 +4,11 @@ import TopoLines from "./TopoLines";
 
 export default function AboutSection({ forestImage, mossImage }) {
   return (
-    <section id="about" className="relative py-24 md:py-36 bg-muted overflow-hidden">
+    <section id="about" className="relative py-16 sm:py-20 md:py-36 bg-muted overflow-hidden">
       <TopoLines className="text-foreground" opacity={0.03} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-24 items-center">
           {/* Images column */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -47,10 +47,10 @@ export default function AboutSection({ forestImage, mossImage }) {
             transition={{ duration: 1, delay: 0.2 }}
             className="lg:pl-4"
           >
-            <p className="text-accent text-sm font-semibold tracking-[0.3em] uppercase mb-4">
+            <p className="text-accent text-xs sm:text-sm font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4">
               A Történetünk
             </p>
-            <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground tracking-tight uppercase leading-none mb-8">
+            <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground uppercase leading-none mb-8">
               Ahol a hegyek
               <br />
               meséket mondanak
@@ -74,7 +74,7 @@ export default function AboutSection({ forestImage, mossImage }) {
               </p>
             </div>
 
-            <div className="mt-10 flex items-center gap-6">
+            <div className="mt-10 flex items-center gap-4 sm:gap-6">
               <div className="flex-shrink-0 w-14 h-14 bg-accent/10 flex items-center justify-center">
                 <span className="text-accent font-heading font-bold text-xl">FM</span>
               </div>

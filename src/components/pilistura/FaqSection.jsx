@@ -37,21 +37,21 @@ const FAQS = [
 
 export default function FaqSection() {
   return (
-    <section id="faq" className="relative py-24 md:py-36 bg-background overflow-hidden">
+    <section id="faq" className="relative py-16 sm:py-20 md:py-36 bg-background overflow-hidden">
       <TopoLines className="text-foreground" opacity={0.03} />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 md:px-16">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 md:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <p className="text-accent text-sm font-semibold tracking-[0.3em] uppercase mb-4">
+          <p className="text-accent text-xs sm:text-sm font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4">
             Gyakori Kérdések
           </p>
-          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground tracking-tight uppercase leading-none">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground uppercase leading-none">
             Amit tudnod kell
             <br />
             indulás előtt
@@ -69,7 +69,7 @@ export default function FaqSection() {
               <AccordionItem
                 key={i}
                 value={`faq-${i}`}
-                className="border border-border bg-muted/40 px-5"
+                className="border border-border bg-muted/40 px-4 sm:px-5"
               >
                 <AccordionTrigger className="text-left font-heading font-semibold text-foreground text-base md:text-lg hover:no-underline hover:text-accent">
                   {item.q}

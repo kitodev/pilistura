@@ -13,11 +13,11 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-24 md:py-36 bg-background overflow-hidden">
+    <section id="contact" className="relative py-16 sm:py-20 md:py-36 bg-background overflow-hidden">
       <TopoLines className="text-foreground" opacity={0.03} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
           {/* Left: Contact info */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -25,10 +25,10 @@ export default function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-accent text-sm font-semibold tracking-[0.3em] uppercase mb-4">
+            <p className="text-accent text-xs sm:text-sm font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4">
               Kapcsolat
             </p>
-            <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground tracking-tight uppercase leading-none mb-8">
+            <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground uppercase leading-none mb-8">
               Találkozzunk
               <br />
               a hegyek között
@@ -89,7 +89,7 @@ export default function ContactSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             {submitted ? (
-              <div className="h-full flex items-center justify-center bg-muted p-12 text-center">
+              <div className="h-full flex items-center justify-center bg-muted p-6 sm:p-12 text-center">
                 <div>
                   <div className="w-16 h-16 bg-accent/10 mx-auto flex items-center justify-center mb-6">
                     <Send className="w-7 h-7 text-accent" />

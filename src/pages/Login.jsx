@@ -33,7 +33,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 py-8 sm:py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <img src={LOGO_URL} alt="Hunyadi Vándorfogadó" className="h-24 w-auto mx-auto mb-5 object-contain" />
@@ -41,7 +41,7 @@ export default function Login() {
           <p className="text-muted-foreground text-sm mt-1.5">Lépj be a fiókodba a túrák nyomon követéséhez</p>
         </div>
 
-        <div className="bg-card border border-border p-8 shadow-sm">
+        <div className="bg-card border border-border p-5 sm:p-8 shadow-sm">
           <button
             onClick={handleGoogle}
             className="w-full h-11 border border-border flex items-center justify-center gap-2 text-sm font-medium hover:bg-muted transition-colors mb-6"

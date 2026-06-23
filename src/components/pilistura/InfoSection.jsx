@@ -46,10 +46,10 @@ export default function InfoSection({ trailImage }) {
   const [openId, setOpenId] = useState("how");
 
   return (
-    <section id="info" className="relative py-24 md:py-36 bg-background overflow-hidden">
+    <section id="info" className="relative py-16 sm:py-20 md:py-36 bg-background overflow-hidden">
       <TopoLines className="text-foreground" opacity={0.03} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           {/* Left: Info accordion */}
           <div>
@@ -59,10 +59,10 @@ export default function InfoSection({ trailImage }) {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <p className="text-accent text-sm font-semibold tracking-[0.3em] uppercase mb-4">
+              <p className="text-accent text-xs sm:text-sm font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4">
                 Tudnivalók
               </p>
-              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground tracking-tight uppercase leading-none mb-10">
+              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground uppercase leading-none mb-8 sm:mb-10">
                 Minden, amit
                 <br />
                 tudnod kell
@@ -83,7 +83,7 @@ export default function InfoSection({ trailImage }) {
                   >
                     <button
                       onClick={() => setOpenId(isOpen ? null : item.id)}
-                      className="w-full flex items-center gap-4 py-5 text-left group"
+                      className="w-full flex items-center gap-3 sm:gap-4 py-5 text-left group"
                     >
                       <Icon className={`w-5 h-5 flex-shrink-0 transition-colors duration-300 ${isOpen ? "text-accent" : "text-muted-foreground"}`} />
                       <span className={`flex-1 font-heading font-semibold text-base tracking-tight transition-colors duration-300 ${isOpen ? "text-foreground" : "text-muted-foreground"}`}>
@@ -100,7 +100,7 @@ export default function InfoSection({ trailImage }) {
                           transition={{ duration: 0.3 }}
                           className="overflow-hidden"
                         >
-                          <p className="pl-9 pb-5 text-muted-foreground leading-relaxed text-sm md:text-base">
+                          <p className="pl-8 sm:pl-9 pb-5 text-muted-foreground leading-relaxed text-sm md:text-base">
                             {item.content}
                           </p>
                         </motion.div>

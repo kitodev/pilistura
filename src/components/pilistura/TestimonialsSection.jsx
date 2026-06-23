@@ -26,28 +26,28 @@ const TESTIMONIALS = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative py-24 md:py-36 bg-muted overflow-hidden">
+    <section className="relative py-16 sm:py-20 md:py-36 bg-muted overflow-hidden">
       <TopoLines className="text-foreground" opacity={0.03} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-14 md:mb-20"
+          className="mb-12 md:mb-20"
         >
-          <p className="text-accent text-sm font-semibold tracking-[0.3em] uppercase mb-4">
+          <p className="text-accent text-xs sm:text-sm font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4">
             Közösség
           </p>
-          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground tracking-tight uppercase leading-none">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-foreground uppercase leading-none">
             Expedíciós
             <br />
             krónikák
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8">
           {TESTIMONIALS.map((t, i) => (
             <motion.div
               key={t.name}
@@ -55,7 +55,7 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="relative bg-background border border-border p-8 group hover:border-accent/30 transition-colors duration-500"
+              className="relative bg-background border border-border p-5 sm:p-8 group hover:border-accent/30 transition-colors duration-500"
             >
               <Quote className="w-8 h-8 text-accent/20 mb-4" />
               <p className="text-muted-foreground leading-relaxed mb-6 text-sm md:text-base">

@@ -121,7 +121,7 @@ export default function Alapadatok({ user }) {
       <button
         type="submit"
         disabled={saving}
-        className="px-10 py-2.5 bg-accent text-accent-foreground font-heading font-semibold text-sm tracking-[0.2em] uppercase hover:bg-accent/90 transition-colors disabled:opacity-60 flex items-center gap-2"
+        className="w-full sm:w-auto justify-center px-8 sm:px-10 py-2.5 bg-accent text-accent-foreground font-heading font-semibold text-sm tracking-[0.16em] sm:tracking-[0.2em] uppercase hover:bg-accent/90 transition-colors disabled:opacity-60 flex items-center gap-2"
       >
         {saving ? (
           <><Loader2 className="w-4 h-4 animate-spin" />Mentés...</>

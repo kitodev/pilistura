@@ -10,9 +10,9 @@ const STATS = [
 
 export default function StatsSection() {
   return (
-    <section className="relative py-16 md:py-24 bg-foreground text-background overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+    <section className="relative py-12 sm:py-16 md:py-24 bg-foreground text-background overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 lg:px-24">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12">
           {STATS.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -22,11 +22,11 @@ export default function StatsSection() {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className="text-center md:text-left"
             >
-              <div className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight">
+              <div className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
                 {stat.value}
                 <span className="text-accent">{stat.suffix}</span>
               </div>
-              <p className="mt-2 text-sm md:text-base text-background/60 tracking-wide uppercase">
+              <p className="mt-2 text-xs sm:text-sm md:text-base text-background/60 tracking-wide uppercase">
                 {stat.label}
               </p>
             </motion.div>
