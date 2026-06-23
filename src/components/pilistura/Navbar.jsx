@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { base44 } from "@/api/base44Client";
+import { useAuth } from "@/lib/AuthContext";
 
 const NAV_LINKS = [
   { label: "Főoldal", href: "#hero" },
@@ -17,7 +17,7 @@ const LOGO_URL = "https://media.base44.com/images/public/6a3313a648abe8c04826b00
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const { isAuthenticated, logout } = useAuth();
   const location = useLocation();
   const isHome = location.pathname === "/";
   const solid = scrolled || !isHome;
@@ -26,10 +26,6 @@ export default function Navbar() {
     const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => setUser(null));
   }, []);
 
   const scrollTo = (href) => {
@@ -78,7 +74,7 @@ export default function Navbar() {
               >
                 Nevezés
               </button>
-              {user ? (
+              {isAuthenticated ? (
                 <>
                   <Link
                     to="/profile"
@@ -89,7 +85,7 @@ export default function Navbar() {
                     Profil
                   </Link>
                   <button
-                    onClick={() => base44.auth.logout("/")}
+                    onClick={() => logout(true)}
                     className={`text-sm font-medium tracking-wide uppercase transition-colors duration-300 hover:text-accent ${
                       solid ? "text-foreground/70" : "text-white/80"
                     }`}
@@ -143,7 +139,7 @@ export default function Navbar() {
             >
               Nevezés
             </button>
-            {user ? (
+            {isAuthenticated ? (
               <>
                 <Link
                   to="/profile"
@@ -153,7 +149,7 @@ export default function Navbar() {
                   Profil
                 </Link>
                 <button
-                  onClick={() => { setMobileOpen(false); base44.auth.logout("/"); }}
+                  onClick={() => { setMobileOpen(false); logout(true); }}
                   className="text-base font-heading font-semibold tracking-[0.15em] uppercase text-foreground hover:text-accent transition-colors"
                 >
                   Kilépés

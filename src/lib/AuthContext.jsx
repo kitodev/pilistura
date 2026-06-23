@@ -42,6 +42,7 @@ export const AuthProvider = ({ children }) => {
         if (appParams.token) {
           await checkUserAuth();
         } else {
+          setUser(null);
           setIsLoadingAuth(false);
           setIsAuthenticated(false);
           setAuthChecked(true);
@@ -50,14 +51,13 @@ export const AuthProvider = ({ children }) => {
       } catch (appError) {
         console.error('App state check failed:', appError);
 
-        // Handle app-level errors
+        // Handle app-level errors. Public pages should still render when auth is required.
         if (appError.status === 403 && appError.data?.extra_data?.reason) {
           const reason = appError.data.extra_data.reason;
           if (reason === 'auth_required') {
-            setAuthError({
-              type: 'auth_required',
-              message: 'Authentication required'
-            });
+            setUser(null);
+            setIsAuthenticated(false);
+            setAuthChecked(true);
           } else if (reason === 'user_not_registered') {
             setAuthError({
               type: 'user_not_registered',
@@ -86,6 +86,9 @@ export const AuthProvider = ({ children }) => {
       });
       setIsLoadingPublicSettings(false);
       setIsLoadingAuth(false);
+      setUser(null);
+      setIsAuthenticated(false);
+      setAuthChecked(true);
     }
   };
 
@@ -94,12 +97,16 @@ export const AuthProvider = ({ children }) => {
       // Now check if the user is authenticated
       setIsLoadingAuth(true);
       const currentUser = await base44.auth.me();
+      if (!currentUser || (!currentUser.id && !currentUser.email)) {
+        throw new Error('No authenticated user returned');
+      }
       setUser(currentUser);
       setIsAuthenticated(true);
       setIsLoadingAuth(false);
       setAuthChecked(true);
     } catch (error) {
       console.error('User auth check failed:', error);
+      setUser(null);
       setIsLoadingAuth(false);
       setIsAuthenticated(false);
       setAuthChecked(true);

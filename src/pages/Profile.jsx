@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { base44 } from "@/api/base44Client";
+import React, { useState } from "react";
 import Navbar from "@/components/pilistura/Navbar";
 import Alapadatok from "@/components/pilistura/profile/Alapadatok";
 import Dicsosegfal from "@/components/pilistura/profile/Dicsosegfal";
 import Eredmenyeim from "@/components/pilistura/profile/Eredmenyeim";
+import { useAuth } from "@/lib/AuthContext";
 
 const TABS = [
   { id: "alapadatok", label: "Alapadatok" },
@@ -13,11 +13,7 @@ const TABS = [
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("alapadatok");
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => {});
-  }, []);
+  const { user } = useAuth();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
