@@ -16,6 +16,7 @@ import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
 import ResetPassword from '@/pages/ResetPassword';
+import AuthCallback from '@/components/AuthCallback';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -40,11 +41,14 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
-      <Route path="/auth/callback" element={<Navigate to="/" replace />} />
-      <Route path="/callback" element={<Navigate to="/" replace />} />
-      <Route path="/oauth/callback" element={<Navigate to="/" replace />} />
+      <Route path="/auth/callback" element={<AuthCallback />} />
+      <Route path="/callback" element={<AuthCallback />} />
+      <Route path="/oauth/callback" element={<AuthCallback />} />
+      <Route path="/auth/login" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/Login" element={<Navigate to="/login" replace />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/Register" element={<Navigate to="/register" replace />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/" element={<Home />} />
