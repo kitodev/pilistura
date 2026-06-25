@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from "@/lib/AuthContext";
@@ -14,15 +15,15 @@ const NAV_LINKS = [
 ];
 
 const LOGO_URL =
-  "https://media.base44.com/images/public/6a3313a648abe8c04826b000/d7229170f_2026_HunyadiVandorfogado_logo-909x1024.png";
+  "/logo.svg";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { isAuthenticated, logout } = useAuth();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const isHome = location.pathname === "/";
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHome = pathname === "/";
   const solid = scrolled || !isHome;
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function Navbar() {
   const scrollTo = (href) => {
     setMobileOpen(false);
     if (href.startsWith("/")) {
-      navigate(href);
+      router.push(href);
       return;
     }
     if (!isHome) {
@@ -48,7 +49,7 @@ export default function Navbar() {
 
   const goToRegistration = () => {
     setMobileOpen(false);
-    navigate("/nevezes");
+    router.push("/nevezes");
   };
 
   return (
@@ -92,9 +93,9 @@ export default function Navbar() {
               {isAuthenticated ? (
                 <>
                   <Link
-                    to="/profile"
+                    href="/profile"
                     className={`text-sm font-medium uppercase tracking-wide transition-colors duration-300 hover:text-accent ${
-                      location.pathname === "/profile" ? "text-accent" : solid ? "text-foreground/70" : "text-white/80"
+                      pathname === "/profile" ? "text-accent" : solid ? "text-foreground/70" : "text-white/80"
                     }`}
                   >
                     Profil
@@ -110,7 +111,7 @@ export default function Navbar() {
                 </>
               ) : (
                 <Link
-                  to="/login"
+                  href="/login"
                   className={`text-sm font-medium uppercase tracking-wide transition-colors duration-300 hover:text-accent ${
                     solid ? "text-foreground/70" : "text-white/80"
                   }`}
@@ -157,7 +158,7 @@ export default function Navbar() {
             {isAuthenticated ? (
               <>
                 <Link
-                  to="/profile"
+                  href="/profile"
                   onClick={() => setMobileOpen(false)}
                   className="text-base font-heading font-semibold uppercase tracking-[0.15em] text-foreground transition-colors hover:text-accent"
                 >
@@ -175,7 +176,7 @@ export default function Navbar() {
               </>
             ) : (
               <Link
-                to="/login"
+                href="/login"
                 onClick={() => setMobileOpen(false)}
                 className="text-base font-heading font-semibold uppercase tracking-[0.15em] text-foreground transition-colors hover:text-accent"
               >

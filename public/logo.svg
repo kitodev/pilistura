@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 180" role="img" aria-label="Hunyadi Vandorfogado">
+  <rect width="160" height="180" fill="#283022"/>
+  <path d="M80 18 137 48v44c0 37-22 62-57 76-35-14-57-39-57-76V48L80 18Z" fill="#c38e43"/>
+  <path d="M42 108 72 66l18 27 14-18 24 33H42Z" fill="#efe6d1"/>
+  <path d="M42 128h76" stroke="#efe6d1" stroke-width="8" stroke-linecap="round"/>
+</svg>

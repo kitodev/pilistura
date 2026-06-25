@@ -2,7 +2,7 @@
 import React from "react";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 
-const LOGO_URL = "https://media.base44.com/images/public/6a3313a648abe8c04826b000/d7229170f_2026_HunyadiVandorfogado_logo-909x1024.png";
+const LOGO_URL = "/logo.svg";
 
 const FOOTER_LINKS = [
   {

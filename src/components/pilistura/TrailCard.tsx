@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { MapPin, Clock, TrendingUp, ArrowRight, Navigation } from "lucide-react";
 import ElevationProfile from "./ElevationProfile";
@@ -20,7 +20,7 @@ const DIFFICULTY_LABELS = {
 };
 
 export default function TrailCard({ trail, index, onHover, isActive }) {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <motion.div
@@ -116,7 +116,7 @@ export default function TrailCard({ trail, index, onHover, isActive }) {
           )}
 
           <button
-            onClick={() => navigate("/nevezes")}
+            onClick={() => router.push("/nevezes")}
             className="w-full flex items-center justify-center gap-2 bg-foreground text-background py-3 text-sm font-semibold tracking-wider uppercase hover:bg-accent hover:text-accent-foreground transition-all duration-300 group/btn"
           >
             Részletek

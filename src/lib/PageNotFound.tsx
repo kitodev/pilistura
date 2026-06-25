@@ -1,10 +1,10 @@
 // @ts-nocheck
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 
 
 export default function PageNotFound({}) {
-    const location = useLocation();
-    const pageName = location.pathname.substring(1);
+    const pathname = usePathname();
+    const pageName = pathname.substring(1);
 
     return (
         <div className="min-h-screen flex items-center justify-center p-6 bg-slate-50">

@@ -1,36 +1,28 @@
 // @ts-nocheck
 import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { base44 } from "@/api/base44Client";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/AuthContext";
 
 export default function AuthCallback() {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const router = useRouter();
   const { checkUserAuth } = useAuth();
 
   useEffect(() => {
-    const accessToken = searchParams.get("access_token") || searchParams.get("token");
+    const searchParams = new URLSearchParams(window.location.search);
     const fromUrl = searchParams.get("from_url") || "/";
-
-    if (accessToken) {
-      base44.auth.setToken(accessToken);
-    }
 
     const finishLogin = async () => {
       try {
-        if (accessToken) {
-          await checkUserAuth();
-        }
+        await checkUserAuth();
       } finally {
         const target = new URL(fromUrl, window.location.origin);
         const sameOrigin = target.origin === window.location.origin;
-        navigate(sameOrigin ? `${target.pathname}${target.search}${target.hash}` : "/", { replace: true });
+        router.replace(sameOrigin ? `${target.pathname}${target.search}${target.hash}` : "/");
       }
     };
 
     finishLogin();
-  }, [checkUserAuth, navigate, searchParams]);
+  }, [checkUserAuth, router]);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-background">

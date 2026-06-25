@@ -1,8 +1,8 @@
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
-import { base44 } from "@/api/base44Client";
+import { supabaseApi } from "@/api/supabaseClient";
 
-const LOGO_URL = "https://media.base44.com/images/public/6a3313a648abe8c04826b000/d7229170f_2026_HunyadiVandorfogado_logo-909x1024.png";
+const LOGO_URL = "/logo.svg";
 
 export default function Dicsosegfal() {
   const [filter, setFilter] = useState("Futva");
@@ -11,7 +11,7 @@ export default function Dicsosegfal() {
 
   useEffect(() => {
     setLoading(true);
-    base44.entities.TrailCompletion.filter({ trail_type: filter, status: "Teljesítve" })
+    supabaseApi.entities.TrailCompletion.filter({ trail_type: filter, status: "Teljesítve" })
       .then(setCompletions)
       .finally(() => setLoading(false));
   }, [filter]);

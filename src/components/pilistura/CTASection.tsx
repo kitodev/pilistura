@@ -1,11 +1,11 @@
 // @ts-nocheck
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 export default function CTASection({ vistaImage }) {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <section className="relative py-20 sm:py-28 md:py-44 overflow-hidden">
@@ -48,7 +48,7 @@ export default function CTASection({ vistaImage }) {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
-              onClick={() => navigate("/nevezes")}
+              onClick={() => router.push("/nevezes")}
               className="group w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground px-8 sm:px-10 py-4 font-semibold tracking-widest uppercase text-sm transition-all duration-300 hover:translate-y-[-2px] flex items-center justify-center gap-3"
             >
               Nevezek

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 
@@ -10,8 +10,9 @@ const DefaultFallback = () => (
   </div>
 );
 
-export default function ProtectedRoute({ fallback = <DefaultFallback />, unauthenticatedElement }) {
+export default function ProtectedRoute({ children, fallback = <DefaultFallback />, unauthenticatedElement = null }) {
   const { isAuthenticated, isLoadingAuth, authChecked, authError, checkUserAuth } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     if (!authChecked && !isLoadingAuth) {
@@ -27,12 +28,16 @@ export default function ProtectedRoute({ fallback = <DefaultFallback />, unauthe
     if (authError.type === 'user_not_registered') {
       return <UserNotRegisteredError />;
     }
-    return unauthenticatedElement;
+    if (unauthenticatedElement) return unauthenticatedElement;
+    router.replace('/login');
+    return fallback;
   }
 
   if (!isAuthenticated) {
-    return unauthenticatedElement;
+    if (unauthenticatedElement) return unauthenticatedElement;
+    router.replace('/login');
+    return fallback;
   }
 
-  return <Outlet />;
+  return <>{children}</>;
 }

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Trophy, Medal, Award } from "lucide-react";
 import TopoLines from "./TopoLines";
@@ -23,7 +23,7 @@ const RANK_ICON = {
 };
 
 export default function ResultsSection() {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <section id="results" className="relative py-16 sm:py-20 md:py-36 bg-muted overflow-hidden">
@@ -50,7 +50,7 @@ export default function ResultsSection() {
           </p>
           <button
             type="button"
-            onClick={() => navigate("/eredmenyek")}
+            onClick={() => router.push("/eredmenyek")}
             className="mt-8 bg-[#c38e43] px-6 py-4 font-heading text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-[#a87935]"
           >
             Részletes eredmények

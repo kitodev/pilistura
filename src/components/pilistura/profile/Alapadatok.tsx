@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
-import { base44 } from "@/api/base44Client";
+import { supabaseApi } from "@/api/supabaseClient";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2 } from "lucide-react";
@@ -16,7 +16,7 @@ export default function Alapadatok({ user }) {
 
   useEffect(() => {
     if (!user) return;
-    base44.entities.UserProfile.filter({ created_by_id: user.id }).then((results) => {
+    supabaseApi.entities.UserProfile.filter({ created_by_id: user.id }).then((results) => {
       if (results.length > 0) {
         const p = results[0];
         setProfile(p);
@@ -43,9 +43,9 @@ export default function Alapadatok({ user }) {
     setSaving(true);
     try {
       if (profile) {
-        await base44.entities.UserProfile.update(profile.id, form);
+        await supabaseApi.entities.UserProfile.update(profile.id, form);
       } else {
-        const p = await base44.entities.UserProfile.create(form);
+        const p = await supabaseApi.entities.UserProfile.create(form);
         setProfile(p);
       }
       setSaved(true);

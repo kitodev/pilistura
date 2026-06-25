@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
-import { base44 } from "@/api/base44Client";
+import { supabaseApi } from "@/api/supabaseClient";
 import moment from "moment";
 
 export default function Eredmenyeim({ user }) {
@@ -9,7 +9,7 @@ export default function Eredmenyeim({ user }) {
 
   useEffect(() => {
     if (!user) return;
-    base44.entities.TrailCompletion.filter({ created_by_id: user.id })
+    supabaseApi.entities.TrailCompletion.filter({ created_by_id: user.id })
       .then(setCompletions)
       .finally(() => setLoading(false));
   }, [user]);
