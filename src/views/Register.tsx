@@ -64,8 +64,13 @@ export default function Register() {
     }
   };
 
-  const handleGoogle = () => {
-    supabaseApi.auth.loginWithProvider("google", "/");
+  const handleGoogle = async () => {
+    setError("");
+    try {
+      await supabaseApi.auth.loginWithProvider("google", "/");
+    } catch (err) {
+      setError(err.message || "Google sign-up failed");
+    }
   };
 
   if (showOtp) {

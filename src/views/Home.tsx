@@ -35,6 +35,7 @@ const TRAILS = [
     sensoryTag: "Illat: vadfokhagyma & friss moha",
     image: FOREST_IMG,
     gps: { lat: 47.7006, lng: 18.9012, label: "47°42'02\"N 18°54'04\"E" },
+    href: "/utvonalak/zrinyi-miklos-10",
     alltrails_url: "https://www.alltrails.com/search?q=Pilis+Piliszentlászló",
   },
   {

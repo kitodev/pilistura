@@ -2,24 +2,41 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from "@/lib/AuthContext";
 
+const ROUTE_LINKS = [
+  { label: "Zrínyi Miklós 10 KM", href: "/utvonalak/zrinyi-miklos-10" },
+  { label: "Attila Király 10KM", href: "/#trails" },
+  { label: "Szent László 13KM", href: "/#trails" },
+  { label: "Hunyadi Mátyás 16KM", href: "/#trails" },
+  { label: "Hunyadi Mátyás 22KM", href: "/#trails" },
+  { label: "Hunyadi Mátyás 23KM", href: "/#trails" },
+  { label: "II. Rákóczi Ferenc 18KM", href: "/#trails" },
+  { label: "Hunyadi János 20KM", href: "/#trails" },
+  { label: "II. Rákóczi Ferenc 26KM", href: "/#trails" },
+  { label: "Hunyadi Mátyás 28KM", href: "/#trails" },
+  { label: "Zrínyi Miklós 29KM", href: "/#trails" },
+  { label: "Szent László 29KM", href: "/#trails" },
+  { label: "Spartacus ösvény", href: "/#trails" },
+  { label: "Kinizsi Pál 45KM", href: "/#trails" },
+  { label: "Hunyadi János 55KM", href: "/#trails" },
+];
+
 const NAV_LINKS = [
   { label: "Főoldal", href: "#hero" },
-  { label: "Útvonalak", href: "#trails" },
   { label: "GYIK", href: "#faq" },
   { label: "Eredmények", href: "/eredmenyek" },
   { label: "Kapcsolat", href: "#contact" },
 ];
 
-const LOGO_URL =
-  "/logo.svg";
+const LOGO_URL = "/logo.svg";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [routeMenuOpen, setRouteMenuOpen] = useState(false);
   const { isAuthenticated, logout } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
@@ -35,6 +52,7 @@ export default function Navbar() {
 
   const scrollTo = (href) => {
     setMobileOpen(false);
+    setRouteMenuOpen(false);
     if (href.startsWith("/")) {
       router.push(href);
       return;
@@ -52,19 +70,29 @@ export default function Navbar() {
     router.push("/nevezes");
   };
 
+  const navTextClass = (active = false) =>
+    `text-sm font-medium uppercase tracking-wide transition-colors duration-300 hover:text-accent ${
+      active ? "text-accent" : solid ? "text-foreground/70" : "text-white/80"
+    }`;
+
+  const routeLinkClass = (href) =>
+    `block px-4 py-3 text-left text-sm transition-colors hover:bg-[#f3f0cf] hover:text-foreground ${
+      pathname === href ? "bg-[#f3f0cf] text-foreground" : "text-foreground"
+    }`;
+
   return (
     <>
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed -top-px left-0 right-0 z-50 overflow-hidden transition-all duration-500 ${
+        className={`fixed -top-px left-0 right-0 z-50 overflow-visible transition-all duration-500 ${
           solid ? "bg-background shadow-sm" : "bg-transparent"
         }`}
       >
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="flex h-16 items-center justify-between md:h-20">
-            <button onClick={() => scrollTo("#hero")} className="flex items-center gap-2.5 group">
+            <button onClick={() => scrollTo("#hero")} className="flex items-center gap-2.5">
               <img
                 src={LOGO_URL}
                 alt="Hunyadi Vándorfogadó"
@@ -72,14 +100,53 @@ export default function Navbar() {
               />
             </button>
 
-            <div className="hidden items-center gap-8 md:flex">
-              {NAV_LINKS.map((link) => (
+            <div className="hidden items-center gap-7 md:flex">
+              <button onClick={() => scrollTo("#hero")} className={navTextClass(isHome)}>
+                Főoldal
+              </button>
+
+              <div
+                className="relative"
+                onMouseEnter={() => setRouteMenuOpen(true)}
+                onMouseLeave={() => setRouteMenuOpen(false)}
+              >
+                <button
+                  onClick={() => setRouteMenuOpen((open) => !open)}
+                  className={`flex items-center gap-1 ${navTextClass(pathname.startsWith("/utvonalak"))}`}
+                  aria-expanded={routeMenuOpen}
+                >
+                  Útvonalak
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform ${routeMenuOpen ? "rotate-180" : ""}`} />
+                </button>
+                <AnimatePresence>
+                  {routeMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.16 }}
+                      className="absolute left-0 top-full mt-5 max-h-80 w-64 overflow-y-auto border border-border bg-background shadow-xl"
+                    >
+                      {ROUTE_LINKS.map((link) => (
+                        <Link
+                          key={link.label}
+                          href={link.href}
+                          onClick={() => setRouteMenuOpen(false)}
+                          className={routeLinkClass(link.href)}
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {NAV_LINKS.slice(1).map((link) => (
                 <button
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
-                  className={`text-sm font-medium uppercase tracking-wide transition-colors duration-300 hover:text-accent ${
-                    solid ? "text-foreground/70" : "text-white/80"
-                  }`}
+                  className={navTextClass(pathname === link.href)}
                 >
                   {link.label}
                 </button>
@@ -92,30 +159,15 @@ export default function Navbar() {
               </button>
               {isAuthenticated ? (
                 <>
-                  <Link
-                    href="/profile"
-                    className={`text-sm font-medium uppercase tracking-wide transition-colors duration-300 hover:text-accent ${
-                      pathname === "/profile" ? "text-accent" : solid ? "text-foreground/70" : "text-white/80"
-                    }`}
-                  >
+                  <Link href="/profile" className={navTextClass(pathname === "/profile")}>
                     Profil
                   </Link>
-                  <button
-                    onClick={() => logout(true)}
-                    className={`text-sm font-medium uppercase tracking-wide transition-colors duration-300 hover:text-accent ${
-                      solid ? "text-foreground/70" : "text-white/80"
-                    }`}
-                  >
+                  <button onClick={() => logout(true)} className={navTextClass()}>
                     Kilépés
                   </button>
                 </>
               ) : (
-                <Link
-                  href="/login"
-                  className={`text-sm font-medium uppercase tracking-wide transition-colors duration-300 hover:text-accent ${
-                    solid ? "text-foreground/70" : "text-white/80"
-                  }`}
-                >
+                <Link href="/login" className={navTextClass(pathname === "/login")}>
                   Belépés
                 </Link>
               )}
@@ -124,6 +176,7 @@ export default function Navbar() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`p-2 transition-colors md:hidden ${solid ? "text-foreground" : "text-white"}`}
+              aria-label="Menü"
             >
               {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -138,9 +191,41 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-5 overflow-y-auto bg-background pb-8 pt-16"
+            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-5 overflow-y-auto bg-background px-6 pb-8 pt-16"
           >
-            {NAV_LINKS.map((link) => (
+            <button
+              onClick={() => scrollTo("#hero")}
+              className="text-base font-heading font-semibold uppercase tracking-[0.15em] text-foreground transition-colors hover:text-accent"
+            >
+              Főoldal
+            </button>
+            <div className="w-full max-w-xs">
+              <button
+                onClick={() => setRouteMenuOpen((open) => !open)}
+                className="mx-auto flex items-center justify-center gap-1 text-base font-heading font-semibold uppercase tracking-[0.15em] text-foreground transition-colors hover:text-accent"
+              >
+                Útvonalak
+                <ChevronDown className={`h-4 w-4 transition-transform ${routeMenuOpen ? "rotate-180" : ""}`} />
+              </button>
+              {routeMenuOpen && (
+                <div className="mt-4 max-h-56 overflow-y-auto border border-border bg-white text-left shadow-sm">
+                  {ROUTE_LINKS.map((link) => (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      onClick={() => {
+                        setMobileOpen(false);
+                        setRouteMenuOpen(false);
+                      }}
+                      className={routeLinkClass(link.href)}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+            {NAV_LINKS.slice(1).map((link) => (
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}

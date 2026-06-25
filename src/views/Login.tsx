@@ -29,8 +29,13 @@ export default function Login() {
     }
   };
 
-  const handleGoogle = () => {
-    supabaseApi.auth.loginWithProvider("google", "/");
+  const handleGoogle = async () => {
+    setError("");
+    try {
+      await supabaseApi.auth.loginWithProvider("google", "/");
+    } catch (err) {
+      setError(err.message || "Google bejelentkezés sikertelen");
+    }
   };
 
   return (

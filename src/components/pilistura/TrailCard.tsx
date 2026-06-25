@@ -116,7 +116,7 @@ export default function TrailCard({ trail, index, onHover, isActive }) {
           )}
 
           <button
-            onClick={() => router.push("/nevezes")}
+            onClick={() => router.push(trail.href || "/nevezes")}
             className="w-full flex items-center justify-center gap-2 bg-foreground text-background py-3 text-sm font-semibold tracking-wider uppercase hover:bg-accent hover:text-accent-foreground transition-all duration-300 group/btn"
           >
             Részletek

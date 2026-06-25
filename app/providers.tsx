@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import ScrollToTop from "@/components/ScrollToTop";
 import UserNotRegisteredError from "@/components/UserNotRegisteredError";
+import PrivacyConsent from "@/components/pilistura/PrivacyConsent";
 import { AuthProvider, useAuth } from "@/lib/AuthContext";
 import { queryClientInstance } from "@/lib/query-client";
 
@@ -32,6 +33,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <QueryClientProvider client={queryClientInstance}>
         <ScrollToTop />
         <AuthGate>{children}</AuthGate>
+        <PrivacyConsent />
         <Toaster />
       </QueryClientProvider>
     </AuthProvider>
