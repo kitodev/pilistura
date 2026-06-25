@@ -13,7 +13,6 @@ import TestimonialsSection from "@/components/pilistura/TestimonialsSection";
 import CTASection from "@/components/pilistura/CTASection";
 import ContactSection from "@/components/pilistura/ContactSection";
 import Footer from "@/components/pilistura/Footer";
-import ScrollToTopButton from "@/components/pilistura/ScrollToTopButton";
 
 const HERO_IMG = "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=85";
 const FOREST_IMG = "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=85";
@@ -121,7 +120,6 @@ export default function Home() {
       <CTASection vistaImage={AERIAL_IMG} />
       <ContactSection />
       <Footer />
-      <ScrollToTopButton />
     </div>
   );
 }

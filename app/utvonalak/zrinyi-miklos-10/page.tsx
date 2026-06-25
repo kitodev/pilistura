@@ -2,7 +2,7 @@
 
 import Navbar from "@/components/pilistura/Navbar";
 import Footer from "@/components/pilistura/Footer";
-import { Download, MapPin, Mountain, Route, Timer } from "lucide-react";
+import { Download } from "lucide-react";
 
 const CHECKPOINTS = [
   { id: "START", name: "Csobánka, Ötterem kávézó (rajt)", distance: "0 km", elevation: "0 m" },
@@ -16,17 +16,10 @@ const ALLTRAILS_WIDGET_URL =
   process.env.NEXT_PUBLIC_ALLTRAILS_ZRINYI_MIKLOS_10_WIDGET_URL ||
   "https://www.alltrails.com/widget/map/map-0465a18--4?u=m";
 
-const STATS = [
-  { icon: Route, label: "Táv", value: "10 km" },
-  { icon: Mountain, label: "Szintemelkedés", value: "300 m" },
-  { icon: Timer, label: "Nehézség", value: "2/10" },
-  { icon: MapPin, label: "Rajt/cél", value: "Csobánka" },
-];
-
 function CheckpointTable() {
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full min-w-[540px] border-collapse border border-[#24210f] text-left text-[15px]">
+    <div className="w-full overflow-x-auto">
+      <table className="w-full min-w-[500px] border-collapse border border-[#24210f] text-left text-[15px]">
         <thead>
           <tr>
             <th
@@ -66,37 +59,20 @@ export default function ZrinyiMiklos10Page() {
       <main className="pt-24">
         <section className="border-b border-border bg-[#f6f0e4]">
           <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-            <div className="mb-8">
-              <p className="mb-3 font-heading text-xs font-bold uppercase tracking-[0.25em] text-accent">
-                Útvonalak
-              </p>
-              <h1 className="font-heading text-4xl font-bold uppercase tracking-wide text-foreground sm:text-5xl">
-                Zrínyi Miklós 10 KM
-              </h1>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
-                Könnyen teljesíthető, Csobánkáról induló körtúra történelmi és természeti látnivalókkal: római út, Macska-barlang és Szent-kút.
-              </p>
-              <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:max-w-3xl">
-                {STATS.map((item) => (
-                  <div key={item.label} className="border border-border bg-background p-4">
-                    <item.icon className="mb-3 h-5 w-5 text-accent" />
-                    <p className="text-xs uppercase tracking-widest text-muted-foreground">{item.label}</p>
-                    <p className="mt-1 font-heading text-lg font-bold">{item.value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <h1 className="sr-only">Zrínyi Miklós 10 KM</h1>
 
-            <div className="grid items-start gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-              <div className="overflow-hidden bg-transparent">
-              <img
-                src="https://pilistura.hu/images/routes/Zr%C3%ADnyi-10.png"
-                alt="Zrínyi Miklós 10 KM pergamen útvonal információ"
-                className="h-full max-h-[560px] w-full object-contain"
-              />
+            <div className="flex flex-col items-start gap-8 md:flex-row md:gap-10">
+              <div className="w-full md:w-[48%]">
+                <img
+                  src="https://pilistura.hu/images/routes/Zr%C3%ADnyi-10.png"
+                  alt="Zrínyi Miklós 10 KM pergamen útvonal információ"
+                  className="w-full object-contain"
+                />
               </div>
 
-              <CheckpointTable />
+              <div className="w-full md:w-[52%]">
+                <CheckpointTable />
+              </div>
             </div>
           </div>
         </section>
