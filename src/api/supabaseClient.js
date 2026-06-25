@@ -14,7 +14,7 @@ const createError = (error) => {
 };
 
 const createConfigurationError = () => {
-  const error = new Error("Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local, then restart the dev server.");
+  const error = new Error("Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, then restart the dev server.");
   error.status = "missing_supabase_config";
   return error;
 };
