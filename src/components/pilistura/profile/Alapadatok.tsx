@@ -5,37 +5,61 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2 } from "lucide-react";
 
+const emptyForm = {
+  name: "",
+  phone: "",
+  gender: "Férfi",
+  birth_date: "",
+  zip_code: "",
+  city: "",
+  address: "",
+  comment: "",
+};
+
+const profileToForm = (profile, user) => ({
+  name: profile?.name || user?.full_name || "",
+  phone: profile?.phone || "",
+  gender: profile?.gender || "Férfi",
+  birth_date: profile?.birth_date ? String(profile.birth_date).slice(0, 10) : "",
+  zip_code: profile?.zip_code || "",
+  city: profile?.city || "",
+  address: profile?.address || "",
+  comment: profile?.comment || "",
+});
+
 export default function Alapadatok({ user }) {
   const [profile, setProfile] = useState(null);
-  const [form, setForm] = useState({
-    name: "", phone: "", gender: "Férfi", birth_date: "",
-    zip_code: "", city: "", address: "", comment: "",
-  });
+  const [form, setForm] = useState(emptyForm);
+  const [loadingProfile, setLoadingProfile] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [saveError, setSaveError] = useState("");
 
   useEffect(() => {
-    if (!user) return;
-    supabaseApi.entities.UserProfile.filter({ created_by_id: user.id }).then((results) => {
-      if (results.length > 0) {
-        const p = results[0];
-        setProfile(p);
-        setForm({
-          name: p.name || user.full_name || "",
-          phone: p.phone || "",
-          gender: p.gender || "Férfi",
-          birth_date: p.birth_date ? String(p.birth_date).slice(0, 10) : "",
-          zip_code: p.zip_code || "",
-          city: p.city || "",
-          address: p.address || "",
-          comment: p.comment || "",
-        });
-      } else {
-        setForm((f) => ({ ...f, name: user.full_name || "" }));
-      }
-    });
-  }, [user]);
+    if (!user?.id) return;
+
+    let cancelled = false;
+    setLoadingProfile(true);
+    setSaveError("");
+
+    supabaseApi.entities.UserProfile.filter({ created_by_id: user.id }, "-updated_at", 1)
+      .then((results) => {
+        if (cancelled) return;
+        const loadedProfile = results[0] || null;
+        setProfile(loadedProfile);
+        setForm(profileToForm(loadedProfile, user));
+      })
+      .catch((error) => {
+        if (!cancelled) setSaveError(error?.message || "A profiladatok betöltése nem sikerült.");
+      })
+      .finally(() => {
+        if (!cancelled) setLoadingProfile(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [user?.id]);
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
@@ -47,14 +71,15 @@ export default function Alapadatok({ user }) {
       const payload = {
         ...form,
         birth_date: form.birth_date || null,
+        updated_at: new Date().toISOString(),
       };
 
-      if (profile) {
-        await supabaseApi.entities.UserProfile.update(profile.id, payload);
-      } else {
-        const p = await supabaseApi.entities.UserProfile.create(payload);
-        setProfile(p);
-      }
+      const savedProfile = profile
+        ? await supabaseApi.entities.UserProfile.update(profile.id, payload)
+        : await supabaseApi.entities.UserProfile.create(payload);
+
+      setProfile(savedProfile);
+      setForm(profileToForm(savedProfile, user));
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
     } catch (error) {
@@ -66,6 +91,14 @@ export default function Alapadatok({ user }) {
 
   const fieldClass = "mt-1 h-10 border border-input bg-background px-3 text-sm w-full rounded-md focus:outline-none focus:ring-2 focus:ring-ring";
   const labelClass = "text-xs text-muted-foreground";
+
+  if (loadingProfile) {
+    return (
+      <div className="flex min-h-48 items-center justify-center">
+        <Loader2 className="h-7 w-7 animate-spin text-accent" />
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-2xl">
@@ -145,6 +178,12 @@ export default function Alapadatok({ user }) {
       {saveError && (
         <p role="alert" className="text-sm text-destructive">
           {saveError}
+        </p>
+      )}
+
+      {saved && !saveError && (
+        <p role="status" className="text-sm text-green-700">
+          A profiladatok mentése sikerült.
         </p>
       )}
     </form>
