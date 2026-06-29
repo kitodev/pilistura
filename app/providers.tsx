@@ -11,9 +11,9 @@ import { AuthProvider, useAuth } from "@/lib/AuthContext";
 import { queryClientInstance } from "@/lib/query-client";
 
 function AuthGate({ children }: { children: React.ReactNode }) {
-  const { isLoadingAuth, isLoadingPublicSettings, authError } = useAuth() as any;
+  const { isLoadingAuth, isLoadingPublicSettings, authChecked, authError } = useAuth() as any;
 
-  if (isLoadingPublicSettings || isLoadingAuth) {
+  if (isLoadingPublicSettings || (isLoadingAuth && !authChecked)) {
     return (
       <div className="fixed inset-0 flex items-center justify-center">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-slate-200 border-t-slate-800" />

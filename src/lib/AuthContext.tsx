@@ -1,9 +1,22 @@
 // @ts-nocheck
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 import { supabaseApi } from '@/api/supabaseClient';
 import { supabase } from '@/lib/supabaseClient';
 
 const AuthContext = createContext();
+
+const getSessionUser = (session) => {
+  const sessionUser = session?.user;
+  if (!sessionUser) return null;
+
+  return {
+    id: sessionUser.id,
+    email: sessionUser.email,
+    full_name: sessionUser.user_metadata?.full_name || sessionUser.user_metadata?.name || sessionUser.email?.split("@")[0] || "",
+    avatar_url: sessionUser.user_metadata?.avatar_url || null,
+    raw_user_meta_data: sessionUser.user_metadata || {},
+  };
+};
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -14,17 +27,23 @@ export const AuthProvider = ({ children }) => {
   const [authChecked, setAuthChecked] = useState(false);
   const [appPublicSettings, setAppPublicSettings] = useState(null);
 
-  useEffect(() => {
-    checkAppState();
-
-    const { data: subscription } = supabase.auth.onAuthStateChange(() => {
-      checkUserAuth();
-    });
-
-    return () => subscription.subscription?.unsubscribe();
+  const checkUserAuth = useCallback(async () => {
+    try {
+      setAuthError(null);
+      const currentUser = await supabaseApi.auth.me();
+      setUser(currentUser);
+      setIsAuthenticated(Boolean(currentUser));
+    } catch (error) {
+      console.error('User auth check failed:', error);
+      setUser(null);
+      setIsAuthenticated(false);
+    } finally {
+      setIsLoadingAuth(false);
+      setAuthChecked(true);
+    }
   }, []);
 
-  const checkAppState = async () => {
+  const checkAppState = useCallback(async () => {
     try {
       setAuthError(null);
       setAppPublicSettings({ provider: 'supabase' });
@@ -42,24 +61,29 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(false);
       setAuthChecked(true);
     }
-  };
+  }, [checkUserAuth]);
 
-  const checkUserAuth = async () => {
-    try {
-      setIsLoadingAuth(true);
-      const currentUser = await supabaseApi.auth.me();
-      setUser(currentUser);
-      setIsAuthenticated(Boolean(currentUser));
-      setIsLoadingAuth(false);
-      setAuthChecked(true);
-    } catch (error) {
-      console.error('User auth check failed:', error);
-      setUser(null);
-      setIsLoadingAuth(false);
-      setIsAuthenticated(false);
-      setAuthChecked(true);
-    }
-  };
+  useEffect(() => {
+    checkAppState();
+
+    const { data: subscription } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_OUT") {
+        setUser(null);
+        setIsAuthenticated(false);
+        setAuthChecked(true);
+        return;
+      }
+
+      if (event === "INITIAL_SESSION" || event === "SIGNED_IN" || event === "TOKEN_REFRESHED" || event === "USER_UPDATED") {
+        const sessionUser = getSessionUser(session);
+        setUser(sessionUser);
+        setIsAuthenticated(Boolean(sessionUser));
+        setAuthChecked(true);
+      }
+    });
+
+    return () => subscription.subscription?.unsubscribe();
+  }, [checkAppState]);
 
   const logout = async (shouldRedirect = true) => {
     setUser(null);

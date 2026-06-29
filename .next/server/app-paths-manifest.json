@@ -1,7 +1,7 @@
 {
+  "/adatvedelmi-szabalyzat/page": "app/adatvedelmi-szabalyzat/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/adatvedelem/page": "app/adatvedelem/page.js",
-  "/adatvedelmi-szabalyzat/page": "app/adatvedelmi-szabalyzat/page.js",
   "/auth/callback/page": "app/auth/callback/page.js",
   "/auth/login/page": "app/auth/login/page.js",
   "/callback/page": "app/callback/page.js",
@@ -14,5 +14,7 @@
   "/profile/page": "app/profile/page.js",
   "/register/page": "app/register/page.js",
   "/reset-password/page": "app/reset-password/page.js",
-  "/utvonalak/zrinyi-miklos-10/page": "app/utvonalak/zrinyi-miklos-10/page.js"
+  "/utvonalak/zrinyi-miklos-10/page": "app/utvonalak/zrinyi-miklos-10/page.js",
+  "/utvonalak/attila-kiraly-10/page": "app/utvonalak/attila-kiraly-10/page.js",
+  "/utvonalak/[slug]/page": "app/utvonalak/[slug]/page.js"
 }

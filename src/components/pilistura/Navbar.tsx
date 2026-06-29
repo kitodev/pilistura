@@ -8,20 +8,20 @@ import { useAuth } from "@/lib/AuthContext";
 
 const ROUTE_LINKS = [
   { label: "Zrínyi Miklós 10 KM", href: "/utvonalak/zrinyi-miklos-10" },
-  { label: "Attila Király 10KM", href: "/#trails" },
-  { label: "Szent László 13KM", href: "/#trails" },
-  { label: "Hunyadi Mátyás 16KM", href: "/#trails" },
-  { label: "Hunyadi Mátyás 22KM", href: "/#trails" },
-  { label: "Hunyadi Mátyás 23KM", href: "/#trails" },
-  { label: "II. Rákóczi Ferenc 18KM", href: "/#trails" },
-  { label: "Hunyadi János 20KM", href: "/#trails" },
-  { label: "II. Rákóczi Ferenc 26KM", href: "/#trails" },
-  { label: "Hunyadi Mátyás 28KM", href: "/#trails" },
-  { label: "Zrínyi Miklós 29KM", href: "/#trails" },
-  { label: "Szent László 29KM", href: "/#trails" },
-  { label: "Spartacus ösvény", href: "/#trails" },
-  { label: "Kinizsi Pál 45KM", href: "/#trails" },
-  { label: "Hunyadi János 55KM", href: "/#trails" },
+  { label: "Attila Király 10KM", href: "/utvonalak/attila-kiraly-10" },
+  { label: "Szent László 13KM", href: "/utvonalak/szent-laszlo-13" },
+  { label: "Hunyadi Mátyás 16KM", href: "/utvonalak/hunyadi-matyas-16" },
+  { label: "Hunyadi Mátyás 22KM", href: "/utvonalak/hunyadi-matyas-22" },
+  { label: "Hunyadi Mátyás 23KM", href: "/utvonalak/hunyadi-matyas-23" },
+  { label: "II. Rákóczi Ferenc 18KM", href: "/utvonalak/rakoczi-ferenc-18" },
+  { label: "Hunyadi János 20KM", href: "/utvonalak/hunyadi-janos-20" },
+  { label: "II. Rákóczi Ferenc 26KM", href: "/utvonalak/rakoczi-ferenc-26" },
+  { label: "Hunyadi Mátyás 28KM", href: "/utvonalak/hunyadi-matyas-28" },
+  { label: "Zrínyi Miklós 29KM", href: "/utvonalak/zrinyi-miklos-29" },
+  { label: "Szent László 29KM", href: "/utvonalak/szent-laszlo-29" },
+  { label: "Spartacus ösvény", href: "/utvonalak/spartacus" },
+  { label: "Kinizsi Pál 45KM", href: "/utvonalak/kinizsi-pal-45" },
+  { label: "Hunyadi János 55KM", href: "/utvonalak/hunyadi-janos-55" },
 ];
 
 const NAV_LINKS = [
@@ -51,7 +51,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    ["/", "/eredmenyek", "/nevezes", "/login", "/utvonalak/zrinyi-miklos-10"].forEach((href) => {
+    ["/", "/eredmenyek", "/nevezes", "/login", ...ROUTE_LINKS.map((link) => link.href)].forEach((href) => {
       router.prefetch(href);
     });
   }, [router]);

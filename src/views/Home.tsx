@@ -48,6 +48,7 @@ const TRAILS = [
     sensoryTag: "Hang: szélzúgás a bükkfák koronáiban",
     image: MOSS_IMG,
     gps: { lat: 47.7124, lng: 18.8954, label: "47°42'44\"N 18°53'43\"E" },
+    href: "/utvonalak/attila-kiraly-10",
     alltrails_url: "https://www.alltrails.com/search?q=Pilis+Dobogókő",
   },
   {
