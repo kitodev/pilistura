@@ -50,6 +50,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    ["/", "/eredmenyek", "/nevezes", "/login", "/utvonalak/zrinyi-miklos-10"].forEach((href) => {
+      router.prefetch(href);
+    });
+  }, [router]);
+
   const scrollTo = (href) => {
     setMobileOpen(false);
     setRouteMenuOpen(false);
@@ -58,11 +64,11 @@ export default function Navbar() {
       return;
     }
     if (!isHome) {
-      window.location.href = "/" + href;
+      router.push("/" + href);
       return;
     }
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) el.scrollIntoView({ behavior: "auto" });
   };
 
   const goToRegistration = () => {
@@ -82,11 +88,8 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed -top-px left-0 right-0 z-50 overflow-visible transition-all duration-500 ${
+      <nav
+        className={`fixed -top-px left-0 right-0 z-50 overflow-visible ${
           solid ? "bg-background shadow-sm" : "bg-transparent"
         }`}
       >
@@ -182,7 +185,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       <AnimatePresence>
         {mobileOpen && (

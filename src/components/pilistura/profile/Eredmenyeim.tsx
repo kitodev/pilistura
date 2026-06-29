@@ -60,7 +60,7 @@ export default function Eredmenyeim({ user }) {
       <div className="md:hidden space-y-3">
         {completions.length === 0 ? (
           <div className="border border-border px-4 py-10 text-center text-sm text-muted-foreground">
-            MÃ©g nincs nevezÃ©sed. VÃ¡lassz egy Ãºtvonalat Ã©s kezdd el!
+            Még nincs nevezésed. Válassz egy útvonalat és kezdd el!
           </div>
         ) : (
           completions.map((c, i) => (
@@ -72,7 +72,7 @@ export default function Eredmenyeim({ user }) {
                 </div>
                 <span
                   className={`shrink-0 text-xs px-2 py-0.5 rounded-sm font-medium ${
-                    c.status === "TeljesÃ­tve"
+                    c.status === "Teljesítve"
                       ? "bg-green-100 text-green-800"
                       : c.status === "Nevezve"
                       ? "bg-accent/20 text-accent"
@@ -83,8 +83,8 @@ export default function Eredmenyeim({ user }) {
                 </span>
               </div>
               <div className="mt-3 grid grid-cols-1 gap-1 text-muted-foreground">
-                <p>NevezÃ©s: {c.registration_date ? moment(c.registration_date).format("YYYY.MM.DD") : "â€“"}</p>
-                <p>TeljesÃ­tÃ©s: {c.completion_date ? moment(c.completion_date).format("YYYY.MM.DD") : "â€“"}</p>
+                <p>Nevezés: {c.registration_date ? moment(c.registration_date).format("YYYY.MM.DD") : "–"}</p>
+                <p>Teljesítés: {c.completion_date ? moment(c.completion_date).format("YYYY.MM.DD") : "–"}</p>
               </div>
             </div>
           ))

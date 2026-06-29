@@ -13,6 +13,7 @@ export default function Alapadatok({ user }) {
   });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [saveError, setSaveError] = useState("");
 
   useEffect(() => {
     if (!user) return;
@@ -24,7 +25,7 @@ export default function Alapadatok({ user }) {
           name: p.name || user.full_name || "",
           phone: p.phone || "",
           gender: p.gender || "Férfi",
-          birth_date: p.birth_date || "",
+          birth_date: p.birth_date ? String(p.birth_date).slice(0, 10) : "",
           zip_code: p.zip_code || "",
           city: p.city || "",
           address: p.address || "",
@@ -41,15 +42,23 @@ export default function Alapadatok({ user }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
+    setSaveError("");
     try {
+      const payload = {
+        ...form,
+        birth_date: form.birth_date || null,
+      };
+
       if (profile) {
-        await supabaseApi.entities.UserProfile.update(profile.id, form);
+        await supabaseApi.entities.UserProfile.update(profile.id, payload);
       } else {
-        const p = await supabaseApi.entities.UserProfile.create(form);
+        const p = await supabaseApi.entities.UserProfile.create(payload);
         setProfile(p);
       }
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
+    } catch (error) {
+      setSaveError(error?.message || "Az adatok mentése nem sikerült.");
     } finally {
       setSaving(false);
     }
@@ -132,6 +141,12 @@ export default function Alapadatok({ user }) {
           "Mentés"
         )}
       </button>
+
+      {saveError && (
+        <p role="alert" className="text-sm text-destructive">
+          {saveError}
+        </p>
+      )}
     </form>
   );
 }

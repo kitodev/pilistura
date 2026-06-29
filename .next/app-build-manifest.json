@@ -1,25 +1,193 @@
 {
   "pages": {
-    "/utvonalak/zrinyi-miklos-10/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/utvonalak/zrinyi-miklos-10/page.js"
+    "/not-found": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/app/not-found-143f93446c2d72da.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/app/_not-found/page-9acdd4c1055c8289.js"
     ],
     "/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/layout.css",
-      "static/chunks/app/layout.js"
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/css/70366afd32965687.css",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/344-dcf80fa6de291543.js",
+      "static/chunks/669-5d8b29cd72839626.js",
+      "static/chunks/137-a3e1f3eebce6c471.js",
+      "static/chunks/777-0a040e744a14149f.js",
+      "static/chunks/app/layout-e82b65754f0f7d1b.js"
     ],
-    "/not-found": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+    "/adatvedelem/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/app/adatvedelem/page-e287b609fdcdbf06.js"
+    ],
+    "/adatvedelmi-szabalyzat/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/344-dcf80fa6de291543.js",
+      "static/chunks/669-5d8b29cd72839626.js",
+      "static/chunks/529-bd1eaff65d1c4a17.js",
+      "static/chunks/app/adatvedelmi-szabalyzat/page-ffdab82399dbf44e.js"
+    ],
+    "/auth/callback/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/app/auth/callback/page-e76129d5cca2a033.js"
+    ],
+    "/auth/login/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/app/auth/login/page-37d82701f4f03efd.js"
+    ],
+    "/callback/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/app/callback/page-f7c7f20f1594e671.js"
+    ],
+    "/eredmenyek/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/344-dcf80fa6de291543.js",
+      "static/chunks/669-5d8b29cd72839626.js",
+      "static/chunks/529-bd1eaff65d1c4a17.js",
+      "static/chunks/app/eredmenyek/page-a56863ffcd2add85.js"
+    ],
+    "/forgot-password/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/344-dcf80fa6de291543.js",
+      "static/chunks/137-a3e1f3eebce6c471.js",
+      "static/chunks/app/forgot-password/page-2ab13586259e9285.js"
+    ],
+    "/login/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/344-dcf80fa6de291543.js",
+      "static/chunks/137-a3e1f3eebce6c471.js",
+      "static/chunks/app/login/page-62c363d5cb582822.js"
+    ],
+    "/nevezes/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/344-dcf80fa6de291543.js",
+      "static/chunks/669-5d8b29cd72839626.js",
+      "static/chunks/529-bd1eaff65d1c4a17.js",
+      "static/chunks/app/nevezes/page-a3fd2ccabfc7351f.js"
+    ],
+    "/oauth/callback/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/app/oauth/callback/page-d1d278dbe19c9ede.js"
     ],
     "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/344-dcf80fa6de291543.js",
+      "static/chunks/669-5d8b29cd72839626.js",
+      "static/chunks/137-a3e1f3eebce6c471.js",
+      "static/chunks/190-b6b00e48f3ff7458.js",
+      "static/chunks/529-bd1eaff65d1c4a17.js",
+      "static/chunks/app/page-9eb9800198d8056b.js"
+    ],
+    "/profile/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/13b76428-dd7517559418935c.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/344-dcf80fa6de291543.js",
+      "static/chunks/669-5d8b29cd72839626.js",
+      "static/chunks/137-a3e1f3eebce6c471.js",
+      "static/chunks/529-bd1eaff65d1c4a17.js",
+      "static/chunks/app/profile/page-441a75244858a6dc.js"
+    ],
+    "/register/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/344-dcf80fa6de291543.js",
+      "static/chunks/137-a3e1f3eebce6c471.js",
+      "static/chunks/960-166ac3ca1bb04d26.js",
+      "static/chunks/app/register/page-0d0707587301d43b.js"
+    ],
+    "/reset-password/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/137-a3e1f3eebce6c471.js",
+      "static/chunks/app/reset-password/page-5b77f4d45d52c7ba.js"
+    ],
+    "/utvonalak/zrinyi-miklos-10/page": [
+      "static/chunks/webpack-be14a39b4eb94ca3.js",
+      "static/chunks/fd9d1056-39611b6b556cfb74.js",
+      "static/chunks/117-df91503378a98c29.js",
+      "static/chunks/main-app-1e417e6acfa5e9e1.js",
+      "static/chunks/44530001-52999465abdb64c7.js",
+      "static/chunks/659-012fbbb940118b8a.js",
+      "static/chunks/344-dcf80fa6de291543.js",
+      "static/chunks/669-5d8b29cd72839626.js",
+      "static/chunks/529-bd1eaff65d1c4a17.js",
+      "static/chunks/app/utvonalak/zrinyi-miklos-10/page-f56d45ede7a3d2bf.js"
     ]
   }
 }

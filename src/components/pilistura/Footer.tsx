@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React from "react";
+import { useRouter } from "next/navigation";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 
 const LOGO_URL = "/logo.svg";
@@ -35,12 +36,14 @@ const FOOTER_LINKS = [
 ];
 
 export default function Footer() {
+  const router = useRouter();
+
   const goTo = (href) => {
     if (href.startsWith("http")) {
       window.open(href, "_blank", "noopener");
       return;
     }
-    window.location.href = href;
+    router.push(href);
   };
 
   return (

@@ -19,10 +19,8 @@ export default function ScrollToTop() {
     const hash = window.location.hash;
     if (hash) {
       const id = getHashId(hash);
-      const timer = window.setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      }, 50);
-      return () => window.clearTimeout(timer);
+      document.getElementById(id)?.scrollIntoView({ behavior: "auto" });
+      return;
     }
 
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });

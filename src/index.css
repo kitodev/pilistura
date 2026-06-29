@@ -120,5 +120,11 @@
 
 /* Smooth scroll for the whole page */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }

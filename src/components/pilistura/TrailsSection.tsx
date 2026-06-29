@@ -1,12 +1,11 @@
 // @ts-nocheck
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import TrailCard from "./TrailCard";
 import TopoLines from "./TopoLines";
 
 export default function TrailsSection({ trails }) {
-  const [hoveredId, setHoveredId] = useState(null);
   const scrollRef = useRef(null);
 
   const scroll = (direction) => {
@@ -66,19 +65,17 @@ export default function TrailsSection({ trails }) {
         </div>
       </div>
 
-      {/* Horizontal scrolling trail cards */}
+      {/* Swipeable on mobile, arrow-controlled on desktop */}
       <div
         ref={scrollRef}
-        className="relative z-10 flex gap-4 sm:gap-6 overflow-x-auto px-4 sm:px-6 md:px-16 lg:px-24 pb-6 snap-x snap-mandatory scroll-smooth"
-        style={{ scrollbarWidth: "auto", msOverflowStyle: "auto", WebkitOverflowScrolling: "touch", touchAction: "pan-x" }}
+        className="scrollbar-hide relative z-10 flex gap-4 overflow-x-auto px-4 pb-6 scroll-smooth sm:gap-6 sm:px-6 md:overflow-x-hidden md:px-16 lg:px-24"
+        style={{ WebkitOverflowScrolling: "touch" }}
       >
         {trails.map((trail, i) => (
           <TrailCard
             key={trail.id}
             trail={trail}
             index={i}
-            onHover={setHoveredId}
-            isActive={hoveredId === null ? null : hoveredId === trail.id}
           />
         ))}
       </div>

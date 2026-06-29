@@ -19,7 +19,7 @@ const DIFFICULTY_LABELS = {
   extreme: "Extrém",
 };
 
-export default function TrailCard({ trail, index, onHover, isActive }) {
+export default function TrailCard({ trail, index }) {
   const router = useRouter();
 
   return (
@@ -29,11 +29,7 @@ export default function TrailCard({ trail, index, onHover, isActive }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      onMouseEnter={() => onHover && onHover(trail.id)}
-      onMouseLeave={() => onHover && onHover(null)}
-      className={`group relative flex-shrink-0 w-[min(84vw,320px)] sm:w-[320px] md:w-[360px] snap-start transition-all duration-500 ${
-        isActive === false ? "opacity-30 scale-[0.98]" : ""
-      }`}
+      className="group relative w-[min(84vw,320px)] flex-shrink-0 sm:w-[320px] md:w-[360px]"
     >
       <div className="relative overflow-hidden bg-card border border-border">
         {/* Image */}
@@ -41,6 +37,8 @@ export default function TrailCard({ trail, index, onHover, isActive }) {
           <img
             src={trail.image}
             alt={trail.name}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
