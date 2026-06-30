@@ -4,6 +4,8 @@ import { supabaseApi } from '@/api/supabaseClient';
 import { supabase } from '@/lib/supabaseClient';
 
 const AuthContext = createContext();
+const INACTIVITY_TIMEOUT_MS = 10 * 60 * 1000;
+const LAST_ACTIVITY_KEY = "pilistura:last-activity";
 
 const getSessionUser = (session) => {
   const sessionUser = session?.user;
@@ -85,14 +87,81 @@ export const AuthProvider = ({ children }) => {
     return () => subscription.subscription?.unsubscribe();
   }, [checkAppState]);
 
-  const logout = async (shouldRedirect = true) => {
+  const logout = useCallback(async (shouldRedirect = true) => {
     setUser(null);
     setIsAuthenticated(false);
+    if (typeof window !== "undefined") {
+      window.localStorage.removeItem(LAST_ACTIVITY_KEY);
+    }
     await supabaseApi.auth.logout();
     if (shouldRedirect && typeof window !== 'undefined') {
       window.location.href = '/';
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    if (!isAuthenticated || typeof window === "undefined") return;
+
+    let timeoutId;
+    let lastRecordedActivity = 0;
+    let logoutInProgress = false;
+
+    const readLastActivity = () => {
+      const stored = Number(window.localStorage.getItem(LAST_ACTIVITY_KEY));
+      return Number.isFinite(stored) && stored > 0 ? stored : Date.now();
+    };
+
+    const expireSession = async () => {
+      if (Date.now() - readLastActivity() < INACTIVITY_TIMEOUT_MS) {
+        scheduleExpiry();
+        return;
+      }
+      if (logoutInProgress) return;
+
+      logoutInProgress = true;
+      try {
+        await logout(false);
+      } finally {
+        window.location.replace("/login?reason=inactivity");
+      }
+    };
+
+    const scheduleExpiry = () => {
+      window.clearTimeout(timeoutId);
+      const remaining = Math.max(INACTIVITY_TIMEOUT_MS - (Date.now() - readLastActivity()), 0);
+      timeoutId = window.setTimeout(expireSession, remaining);
+    };
+
+    const recordActivity = () => {
+      const now = Date.now();
+      if (now - lastRecordedActivity < 1000) return;
+
+      lastRecordedActivity = now;
+      window.localStorage.setItem(LAST_ACTIVITY_KEY, String(now));
+      scheduleExpiry();
+    };
+
+    const handleStorage = (event) => {
+      if (event.key === LAST_ACTIVITY_KEY && event.newValue) scheduleExpiry();
+    };
+
+    const handleVisibility = () => {
+      if (!document.hidden) expireSession();
+    };
+
+    recordActivity();
+    const activityEvents = ["pointerdown", "pointermove", "keydown", "scroll", "touchstart"];
+    activityEvents.forEach((eventName) => window.addEventListener(eventName, recordActivity, { passive: true }));
+    window.addEventListener("storage", handleStorage);
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      activityEvents.forEach((eventName) => window.removeEventListener(eventName, recordActivity));
+      window.removeEventListener("storage", handleStorage);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, [isAuthenticated, logout]);
 
   const navigateToLogin = () => {
     supabaseApi.auth.redirectToLogin(window.location.href);

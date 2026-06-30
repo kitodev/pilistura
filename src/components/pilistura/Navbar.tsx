@@ -5,24 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAuth } from "@/lib/AuthContext";
-
-const ROUTE_LINKS = [
-  { label: "Zrínyi Miklós 10 KM", href: "/utvonalak/zrinyi-miklos-10" },
-  { label: "Attila Király 10KM", href: "/utvonalak/attila-kiraly-10" },
-  { label: "Szent László 13KM", href: "/utvonalak/szent-laszlo-13" },
-  { label: "Hunyadi Mátyás 16KM", href: "/utvonalak/hunyadi-matyas-16" },
-  { label: "Hunyadi Mátyás 22KM", href: "/utvonalak/hunyadi-matyas-22" },
-  { label: "Hunyadi Mátyás 23KM", href: "/utvonalak/hunyadi-matyas-23" },
-  { label: "II. Rákóczi Ferenc 18KM", href: "/utvonalak/rakoczi-ferenc-18" },
-  { label: "Hunyadi János 20KM", href: "/utvonalak/hunyadi-janos-20" },
-  { label: "II. Rákóczi Ferenc 26KM", href: "/utvonalak/rakoczi-ferenc-26" },
-  { label: "Hunyadi Mátyás 28KM", href: "/utvonalak/hunyadi-matyas-28" },
-  { label: "Zrínyi Miklós 29KM", href: "/utvonalak/zrinyi-miklos-29" },
-  { label: "Szent László 29KM", href: "/utvonalak/szent-laszlo-29" },
-  { label: "Spartacus ösvény", href: "/utvonalak/spartacus" },
-  { label: "Kinizsi Pál 45KM", href: "/utvonalak/kinizsi-pal-45" },
-  { label: "Hunyadi János 55KM", href: "/utvonalak/hunyadi-janos-55" },
-];
+import { ROUTE_LINKS } from "@/data/routeLinks";
 
 const NAV_LINKS = [
   { label: "Főoldal", href: "#hero" },

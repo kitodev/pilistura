@@ -1,0 +1,17 @@
+export const ROUTE_LINKS = [
+  { label: "Zrínyi Miklós 10 KM", href: "/utvonalak/zrinyi-miklos-10" },
+  { label: "Attila Király 10 KM", href: "/utvonalak/attila-kiraly-10" },
+  { label: "Szent László 13 KM", href: "/utvonalak/szent-laszlo-13" },
+  { label: "Hunyadi Mátyás 16 KM", href: "/utvonalak/hunyadi-matyas-16" },
+  { label: "II. Rákóczi Ferenc 18 KM", href: "/utvonalak/rakoczi-ferenc-18" },
+  { label: "Hunyadi János 20 KM", href: "/utvonalak/hunyadi-janos-20" },
+  { label: "Hunyadi Mátyás 22 KM", href: "/utvonalak/hunyadi-matyas-22" },
+  { label: "Hunyadi Mátyás 23 KM", href: "/utvonalak/hunyadi-matyas-23" },
+  { label: "II. Rákóczi Ferenc 26 KM", href: "/utvonalak/rakoczi-ferenc-26" },
+  { label: "Hunyadi Mátyás 28 KM", href: "/utvonalak/hunyadi-matyas-28" },
+  { label: "Zrínyi Miklós 29 KM", href: "/utvonalak/zrinyi-miklos-29" },
+  { label: "Szent László 29 KM", href: "/utvonalak/szent-laszlo-29" },
+  { label: "Spartacus-ösvény", href: "/utvonalak/spartacus" },
+  { label: "Kinizsi Pál 45 KM", href: "/utvonalak/kinizsi-pal-45" },
+  { label: "Hunyadi János 55 KM", href: "/utvonalak/hunyadi-janos-55" },
+] as const;

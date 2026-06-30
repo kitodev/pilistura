@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabaseApi } from "@/api/supabaseClient";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,11 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [inactivityNotice, setInactivityNotice] = useState(false);
+
+  useEffect(() => {
+    setInactivityNotice(new URLSearchParams(window.location.search).get("reason") === "inactivity");
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,6 +53,12 @@ export default function Login() {
         </div>
 
         <div className="bg-card border border-border p-5 sm:p-8 shadow-sm">
+          {inactivityNotice && (
+            <div role="status" className="mb-5 border border-accent/30 bg-accent/10 p-3 text-sm text-foreground">
+              10 perc inaktivitás miatt kijelentkeztettünk. A folytatáshoz lépj be újra.
+            </div>
+          )}
+
           <button
             onClick={handleGoogle}
             className="w-full h-11 border border-border flex items-center justify-center gap-2 text-sm font-medium hover:bg-muted transition-colors mb-6"
